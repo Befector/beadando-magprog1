@@ -9,14 +9,12 @@ namespace Beadandó
         public static List<A> Lista = new List<A>();
         public static List<Meres> meres = new List<Meres>();
 
-        // Feldolgozni a mérés eredményeket (eldönteni mi sziget, tenger, vagy szárazföld)
         static void alg(ushort[] meresek)
         {
             Meres[] _m = new Meres[meresek.Length];
             _m[0] = new Meres(Meres.Tipus.Szarazfold, meresek[0], 0);
             _m[_m.Length - 1] = new Meres(Meres.Tipus.Szarazfold, meresek[meresek.Length - 1], (ushort)(meresek.Length - 1));
 
-            //vektor megtöltése 'félkész' elemekkel
             for (ushort i = 1; i < _m.Length - 1; i++)
             {
                 if (meresek[i] == 0)
@@ -41,7 +39,7 @@ namespace Beadandó
                     Lista.Add(new A(_m[i]._tipus, new List<Meres>() { _m[i] }));
                 }
             }
-            // eldönteni mi a sziget, mi a szárazföld
+
             int _x = 0;
             foreach (A x in Lista)
             {
@@ -61,8 +59,6 @@ namespace Beadandó
                 meres.Add(m);
             }
         }
-        // csak az olvashatóság kedvéért
-        // Feladat: Határozza meg a 100 méternél alacsonyabb szigetek átlagos magasságát (szigetenként)! 
         static void Avg(A[] _a, ushort maxHeight = 100)
         {
             List<A> Szigetek = new List<A>();
@@ -71,14 +67,14 @@ namespace Beadandó
             {
                 if (a._tipus != Meres.Tipus.Sziget)
                     continue;
-                // ha a sziget 'magasabb', mint a megengedett érték
                 if (a.MaxHeight > maxHeight)
                     continue;
                 Szigetek.Add(a);
             }
             Console.WriteLine("100 méter alatti magasságú szigetek száma: " + Szigetek.Count);
+
             ushort ind = 1;
-            //átlag számítása
+
             foreach (A a in Szigetek)
             {
                 ushort sum = 0;
@@ -99,20 +95,16 @@ namespace Beadandó
             ushort[] mag = new ushort[0];
             ushort maxmag = 0;
 
-            // addig ismétlődjön, amíg nincs helyes beviteli érték
             while (true)
             {
                 Console.Write("Kérem a mérések számát (5-1000): ");
                 string input = Console.ReadLine();
                 if (ushort.TryParse(input, out ushort N))
                 {
-                    // a szám a megadott értéktartományon kívül esik
                     if (N < 5 || N > 1000)
                         continue;
-                    // a szám beleesik az értéktartományba
                     else
                     {
-                        // maximális magasság bekérése - csak a jobb szemléltetés érdekében
                         while (true)
                         {
                             Console.WriteLine("\n### TIPP: Minél alacsonyabb a maximális magasság, annál nagyobb eséllyel fordulnak elő szigetek. ### ");
@@ -125,14 +117,12 @@ namespace Beadandó
                                 continue;
                         }
 
-                        // 'mag' vektor igazítása az N értékhez
                         mag = new ushort[N];
                         for (ushort i = 0; i < N; i++)
                         {
                             mag[i] = (ushort)rgen.Next(0, maxmag);
                         }
 
-                        // első és utolsó érték korrigálása
                         while (mag[0] == 0 || mag[N - 1] == 0)
                         {
                             if (mag[0] == 0)
