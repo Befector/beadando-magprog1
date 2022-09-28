@@ -61,7 +61,7 @@ namespace Beadandó
         }
         static void Avg(A[] _a, ushort maxHeight = 100)
         {
-            List<A> Szigetek = new List<A>();
+            List<A> Szig = new List<A>();
 
             foreach (A a in Lista)
             {
@@ -69,13 +69,13 @@ namespace Beadandó
                     continue;
                 if (a.MaxHeight > maxHeight)
                     continue;
-                Szigetek.Add(a);
+                Szig.Add(a);
             }
-            Console.WriteLine("100 méter alatti magasságú szigetek száma: " + Szigetek.Count);
+            Console.WriteLine("100 méter alatti magasságú szigetek száma: " + Szig.Count);
 
             ushort ind = 1;
 
-            foreach (A a in Szigetek)
+            foreach (A a in Szig)
             {
                 ushort sum = 0;
                 foreach (Meres m in a.Meresek)
