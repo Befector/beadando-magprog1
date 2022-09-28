@@ -7,7 +7,7 @@ namespace Beadandó
     {
         public class Meres
         {
-            public enum Tipus { Szarazfold, Sziget, Tenger }
+            public enum Tipus { Szf, Sz, T }
 
             public ushort Index;
             public ushort Magassag;

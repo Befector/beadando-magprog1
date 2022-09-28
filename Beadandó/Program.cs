@@ -12,18 +12,18 @@ namespace Beadandó
         static void alg(ushort[] meresek)
         {
             Meres[] _m = new Meres[meresek.Length];
-            _m[0] = new Meres(Meres.Tipus.Szarazfold, meresek[0], 0);
-            _m[_m.Length - 1] = new Meres(Meres.Tipus.Szarazfold, meresek[meresek.Length - 1], (ushort)(meresek.Length - 1));
+            _m[0] = new Meres(Meres.Tipus.Szf, meresek[0], 0);
+            _m[_m.Length - 1] = new Meres(Meres.Tipus.Szf, meresek[meresek.Length - 1], (ushort)(meresek.Length - 1));
 
             for (ushort i = 1; i < _m.Length - 1; i++)
             {
                 if (meresek[i] == 0)
                 {
-                    _m[i] = new Meres(Meres.Tipus.Tenger, 0, i);
+                    _m[i] = new Meres(Meres.Tipus.T, 0, i);
                 }
                 else
                 {
-                    _m[i] = new Meres(Meres.Tipus.Szarazfold, meresek[i], i);
+                    _m[i] = new Meres(Meres.Tipus.Szf, meresek[i], i);
                 }
             }
 
@@ -43,12 +43,12 @@ namespace Beadandó
             int _x = 0;
             foreach (A x in Lista)
             {
-                if (_x > 0 && _x < Lista.Count - 1 && x._tipus == Meres.Tipus.Szarazfold && Lista[_x - 1]._tipus == Meres.Tipus.Tenger && Lista[_x + 1]._tipus == Meres.Tipus.Tenger)
+                if (_x > 0 && _x < Lista.Count - 1 && x._tipus == Meres.Tipus.Szf && Lista[_x - 1]._tipus == Meres.Tipus.T && Lista[_x + 1]._tipus == Meres.Tipus.T)
                 {       
-                    x._tipus = Meres.Tipus.Sziget;
+                    x._tipus = Meres.Tipus.Sz;
                     foreach (Meres m in x.Meresek)
                     {
-                        m._tipus = Meres.Tipus.Sziget;
+                        m._tipus = Meres.Tipus.Sz;
                     }
                 }
                 _x++;
@@ -65,7 +65,7 @@ namespace Beadandó
 
             foreach (A a in Lista)
             {
-                if (a._tipus != Meres.Tipus.Sziget)
+                if (a._tipus != Meres.Tipus.Sz)
                     continue;
                 if (a.MaxHeight > maxHeight)
                     continue;
@@ -90,7 +90,7 @@ namespace Beadandó
 
         static void Main(string[] args)
         {
-            Console.WriteLine("##### Beadandó - Készítette: Dutka Krisztián Dávid #####\n");
+            Console.WriteLine("##### Beadandó Vizsgadolgozat - Magas Szintű Programozási nyelvek I. #####\n");
             Random rgen = new Random();
             ushort[] mag = new ushort[0];
             ushort maxmag = 0;
@@ -136,7 +136,7 @@ namespace Beadandó
                 }
                 else
                 {
-                    Console.WriteLine("Hibás bevitel. (Túl nagy érték, vagy betűket tartalmaz)");
+                    Console.WriteLine("Hibás érték.");
                     continue;
                 }
             }
@@ -144,12 +144,10 @@ namespace Beadandó
             alg(mag);
             Avg(Lista.ToArray());
 
-            Console.WriteLine();
-
             bool _data = false;
             while (true)
             {
-                Console.Write("Kérsz részletes leírást a feldolgozott adatokról? (I/n): ");
+                Console.Write("\nKérsz részletes leírást a feldolgozott adatokról? (I/n): ");
                 string input = Console.ReadLine();
                 if (input.ToLower() == "i")
                 {
