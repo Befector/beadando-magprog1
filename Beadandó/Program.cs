@@ -43,10 +43,10 @@ namespace Beadandó
             }
             // eldönteni mi a sziget, mi a szárazföld
             int _x = 0;
-            foreach (var x in Lista)
+            foreach (A x in Lista)
             {
                 if (_x > 0 && _x < Lista.Count - 1 && x._tipus == Meres.Tipus.Szarazfold && Lista[_x - 1]._tipus == Meres.Tipus.Tenger && Lista[_x + 1]._tipus == Meres.Tipus.Tenger)
-                {
+                {       
                     x._tipus = Meres.Tipus.Sziget;
                     foreach (Meres m in x.Meresek)
                     {
@@ -179,7 +179,7 @@ namespace Beadandó
                 {
                     Console.WriteLine($"#{_x} -> Kezdő Index: {x.StartIndex}, Méret: {x.EndIndex + 1 - x.StartIndex} Vége: {x.EndIndex}, Típus: {x._tipus}");
                     Console.WriteLine($"Mérések(Össz.: {x.Meresek.Count}):");
-                    foreach (var l in x.Meresek)
+                    foreach (Meres l in x.Meresek)
                     {
                         Console.WriteLine($"--> Index: {l.Index}, Magasság: {l.Magassag}");
                         _x++;
