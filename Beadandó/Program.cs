@@ -120,7 +120,9 @@ namespace Beadandó
                         mag = new ushort[N];
                         for (ushort i = 0; i < N; i++)
                         {
-                            mag[i] = (ushort)rgen.Next(0, maxmag);
+                            short s = (short)rgen.Next((-maxmag)/4, maxmag);
+                            if (s < 0) s = 0;
+                            mag[i] = (ushort)s;
                         }
 
                         while (mag[0] == 0 || mag[N - 1] == 0)
